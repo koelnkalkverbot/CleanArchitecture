@@ -36,6 +36,13 @@ class ListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = dogsListAdapter
         }
+        listSwipeRefresh.setOnRefreshListener {
+            itemsList.visibility = View.GONE
+            listErrorTv.visibility = View.INVISIBLE
+            progressBar.visibility = View.VISIBLE
+            viewModel.refresh()
+            listSwipeRefresh.isRefreshing = false
+        }
         observeViewModel()
     }
 
