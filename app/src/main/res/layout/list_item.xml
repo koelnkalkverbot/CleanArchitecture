@@ -8,11 +8,10 @@
 
         <ImageView
             android:id="@+id/listItemImage"
-            android:layout_width="0dp"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
             android:padding="4dp"
-            android:src="@mipmap/ic_clean_arch_round"
-            app:layout_constraintHorizontal_weight="2"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,9 +23,9 @@
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
             android:text="Title"
-            app:layout_constraintHorizontal_weight="3"
             app:layout_constraintStart_toEndOf="@id/listItemImage"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/listItemDescription"
@@ -36,9 +35,9 @@
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
             android:text="Description"
-            app:layout_constraintHorizontal_weight="3"
             app:layout_constraintStart_toEndOf="@id/listItemImage"
-            app:layout_constraintTop_toBottomOf="@id/listItemName" />
+            app:layout_constraintTop_toBottomOf="@id/listItemName"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

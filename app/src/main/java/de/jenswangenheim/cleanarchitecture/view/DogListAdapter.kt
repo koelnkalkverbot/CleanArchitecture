@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import de.jenswangenheim.cleanarchitecture.R
+import de.jenswangenheim.cleanarchitecture.getCustomProgressDrawable
+import de.jenswangenheim.cleanarchitecture.loadImage
 import de.jenswangenheim.cleanarchitecture.model.DogBreed
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class DogListAdapter(private val dogsList: ArrayList<DogBreed>):
+class DogListAdapter(private val dogsList: ArrayList<DogBreed>) :
     RecyclerView.Adapter<DogListAdapter.DogViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
@@ -28,6 +30,10 @@ class DogListAdapter(private val dogsList: ArrayList<DogBreed>):
         holder.view.setOnClickListener {
             Navigation.findNavController(it).navigate(ListFragmentDirections.actionDetailFragment())
         }
+        holder.view.listItemImage.loadImage(
+            dogsList[position].imageUrl,
+            getCustomProgressDrawable(holder.view.context)
+        )
     }
 
     fun updateItemsList(newItems: List<DogBreed>) {
@@ -36,5 +42,5 @@ class DogListAdapter(private val dogsList: ArrayList<DogBreed>):
         notifyDataSetChanged()
     }
 
-    class DogViewHolder(var view: View): RecyclerView.ViewHolder(view)
+    class DogViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 }
