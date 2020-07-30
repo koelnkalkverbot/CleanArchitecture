@@ -40,7 +40,7 @@ class ListFragment : Fragment() {
             itemsList.visibility = View.GONE
             listErrorTv.visibility = View.INVISIBLE
             progressBar.visibility = View.VISIBLE
-            viewModel.refresh()
+            viewModel.forceRefresh()
             listSwipeRefresh.isRefreshing = false
         }
         observeViewModel()

@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import de.jenswangenheim.cleanarchitecture.R
+import de.jenswangenheim.cleanarchitecture.getCustomProgressDrawable
+import de.jenswangenheim.cleanarchitecture.loadImage
 import de.jenswangenheim.cleanarchitecture.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -26,18 +28,18 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
-
         arguments?.let {
             dogUuid = DetailFragmentArgs.fromBundle(it).dogUuid
         }
+        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
+        viewModel.fetch(dogUuid)
         observeViewModel()
     }
 
     private fun observeViewModel() {
         viewModel.dogLiveData.observe(this, Observer {
             it.let {
+                itemDetailImage.loadImage(it.imageUrl, getCustomProgressDrawable(itemDetailImage.context))
                 itemDetailTitle.text = it.dogBreed
                 itemDetailAttribute1.text = it.lifeSpan
                 itemDetailAttribute2.text = it.breedGroup

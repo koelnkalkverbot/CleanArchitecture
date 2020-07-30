@@ -1,15 +1,24 @@
 package de.jenswangenheim.cleanarchitecture.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import de.jenswangenheim.cleanarchitecture.model.DogBreed
+import de.jenswangenheim.cleanarchitecture.model.DogDatabase
+import kotlinx.coroutines.launch
 
-class DetailViewModel: ViewModel() {
+class DetailViewModel(application: Application): BaseViewModel(application) {
 
     val dogLiveData = MutableLiveData<DogBreed>()
 
-    fun fetch() {
-        val dog = DogBreed("1", "Corgi", "15 years", "group 1", "bredFor", "temperament", "")
+    fun fetch(id: Int) {
+        launch {
+            val dog = DogDatabase(getApplication()).dogDao().getDog(id)
+            dataRetrieved(dog)
+        }
+    }
+
+    private fun dataRetrieved(dog: DogBreed) {
         dogLiveData.value = dog
     }
 }
