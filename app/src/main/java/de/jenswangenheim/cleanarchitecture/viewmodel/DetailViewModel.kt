@@ -2,7 +2,6 @@ package de.jenswangenheim.cleanarchitecture.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import de.jenswangenheim.cleanarchitecture.model.DogBreed
 import de.jenswangenheim.cleanarchitecture.model.DogDatabase
 import kotlinx.coroutines.launch
@@ -18,7 +17,7 @@ class DetailViewModel(application: Application): BaseViewModel(application) {
         }
     }
 
-    private fun dataRetrieved(dog: DogBreed) {
-        dogLiveData.value = dog
+    private fun dataRetrieved(dogDetail: DogBreed) {
+        dogLiveData.value = dogDetail
     }
 }

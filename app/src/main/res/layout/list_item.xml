@@ -2,9 +2,27 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="dog"
+            type="de.jenswangenheim.cleanarchitecture.model.DogBreed" />
+        <variable
+            name="listener"
+            type="de.jenswangenheim.cleanarchitecture.view.ListItemClickListener" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:onClick="@{listener::onListItemClicked}"
         android:layout_height="110dp">
+
+        <TextView
+            android:id="@+id/dogId"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(dog.uuid)}"/>
 
         <ImageView
             android:id="@+id/listItemImage"
@@ -12,6 +30,7 @@
             android:layout_height="match_parent"
             android:padding="4dp"
             android:scaleType="fitCenter"
+            android:imageUrl="@{dog.imageUrl}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +41,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
-            android:text="Title"
+            android:text="@{dog.dogBreed}"
             app:layout_constraintStart_toEndOf="@id/listItemImage"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -34,11 +53,10 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
-            android:text="Description"
+            android:text="@{dog.lifeSpan}"
             app:layout_constraintStart_toEndOf="@id/listItemImage"
             app:layout_constraintTop_toBottomOf="@id/listItemName"
             />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
