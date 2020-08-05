@@ -3,6 +3,7 @@ package de.jenswangenheim.cleanarchitecture.viewmodel
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import de.jenswangenheim.cleanarchitecture.NotificationHelper
 import de.jenswangenheim.cleanarchitecture.SharedPrefsHelper
 import de.jenswangenheim.cleanarchitecture.model.DogApiService
 import de.jenswangenheim.cleanarchitecture.model.DogBreed
@@ -54,6 +55,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                 .subscribeWith(object : DisposableSingleObserver<List<DogBreed>>() {
                     override fun onSuccess(dogList: List<DogBreed>) {
                         writeToDatabase(dogList)
+                        NotificationHelper(getApplication()).createNotification()
                     }
 
                     override fun onError(error: Throwable) {
