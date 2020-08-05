@@ -7,10 +7,14 @@
         <variable
             name="dog"
             type="de.jenswangenheim.cleanarchitecture.model.DogBreed" />
+        <variable
+            name="palette"
+            type="de.jenswangenheim.cleanarchitecture.model.DogPalette" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@{palette.color}"
         tools:context=".view.DetailFragment">
 
         <ImageView
